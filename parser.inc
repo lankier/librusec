@@ -10,11 +10,11 @@ function pp($s) {  // ParsePrint - печать в текущий файл ре�
 Global $PD, $html1, $html2;
 //Трансляция открывающих тэгов fb2 => html. Можно без угловых скобок - добавятся при необходимости.
 $html1 = array ('EPIGRAPH' => '<blockquote class="epigraph">', 'TEXT-AUTHOR' => '<blockquote class=book><i>', 'ANNOTATION' => 'h4 class=book', 
-'POEM' => 'blockquote class=book', 'V' => 'BR', 'EMPTY-LINE' => 'br', 'STANZA' => 'br', 'P' => 'p class=book', 
+'POEM' => '<div class=poem>', 'V' => 'div', 'EMPTY-LINE' => 'br', 'STANZA' => '<div class=stanza>', 'P' => 'p class=book', 
 'SUBTITLE' => 'h5 class=book', 'CITE' => 'blockquote class=book', 'STRONG' => 'b', 'EMPHASIS' => 'i', 'STRIKETHROUGH' => 'strike');
 
 //Трансляция закрывающих тэгов fb2 => html. Отсутствующие тут транслируются по предыдущей схеме.
-$html2 = array ('EPIGRAPH' => '</blockquote>', 'TEXT-AUTHOR' => '</i></blockquote>', 'EMPTY-LINE' => '-', 'TITLE' => '</h3>', 'SECTION' => '-', 'V' => "\n", 'IMAGE' => '-', 'P'=>'</p>','ANNOTATION' => '</h4>','SUBTITLE' => '</h5>', 'CITE' => '</blockquote>', 'EMPTY-LINE' => '-'); 
+$html2 = array ('EPIGRAPH' => '</blockquote>', 'TEXT-AUTHOR' => '</i></blockquote>', 'EMPTY-LINE' => '-', 'TITLE' => '</h3>', 'SECTION' => '-', 'POEM' => '</div>', 'STANZA' => '</div>', 'IMAGE' => '-', 'P'=>'</p>','ANNOTATION' => '</h4>','SUBTITLE' => '</h5>', 'CITE' => '</blockquote>'); 
 
 function libParserStart($parser, $E, $attrs) {
   Global $PD, $html1;
