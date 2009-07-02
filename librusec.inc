@@ -816,6 +816,8 @@ function ReadAnnotation($b, &$nid='') {
 
 function ReadAvtorPage($a, &$nid) {
   $nid = Sel("nid FROM libanode WHERE AvtorId = $a");
+  if ($nid)
+    $nid = Sel("nid FROM node_revisions WHERE nid = $nid"); // описание автора не удалено?
   if (!$nid) $nid = Sel("nid FROM node WHERE node.title = $a AND type = 'adesc'");
   return libAddImagesToNode($nid);
 }
