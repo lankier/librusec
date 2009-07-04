@@ -448,7 +448,7 @@ function DoLibRow($b, $style='') {
   $Seq = libcg($cid1 = 'seq'.$b);
   if (!$Seq) {
     $Seq->BookId = $b;
-    $sth = SELECT("* FROM libseq JOIN libseqname USING(SeqId) WHERE BookId = $b ORDER BY level LIMIT 1");
+    $sth = SELECT("* FROM libseq JOIN libseqname USING(SeqId) WHERE BookId = $b AND level < 100 ORDER BY level LIMIT 1");
     while ($ss = dbf($sth)) {
       $Seq->ids[] = $ss;
       $Seq->allids .= $ss->SeqId.' ';
