@@ -14,8 +14,8 @@ $html1 = array ('EPIGRAPH' => '<blockquote class="epigraph">', 'TEXT-AUTHOR' => 
 'SUBTITLE' => 'h5 class=book', 'CITE' => 'blockquote class=book', 'STRONG' => 'b', 'EMPHASIS' => 'i', 'STRIKETHROUGH' => 'strike');
 
 //Трансляция закрывающих тэгов fb2 => html. Отсутствующие тут транслируются по предыдущей схеме.
-$html2 = array ('EPIGRAPH' => '</blockquote>', 'TEXT-AUTHOR' => '</i></blockquote>', 'EMPTY-LINE' => '-', 'TITLE' => '</h3>', 'SECTION' => '-', 'POEM' => '</div>', 'STANZA' => '</div>', 'IMAGE' => '-', 'P'=>'</p>','ANNOTATION' => '</h4>','SUBTITLE' => '</h5>', 'CITE' => '</blockquote>'); 
-
+$html2 = array ('EPIGRAPH' => '</blockquote>', 'TEXT-AUTHOR' => '</i></blockquote>', 'EMPTY-LINE' => '-', 'TITLE' => '</h3>', 'SECTION' => '-', 
+'POEM' => '</div>', 'STANZA' => '</div>', 'V' => '</div>', 'IMAGE' => '-', 'P'=>'</p>','ANNOTATION' => '</h4>','SUBTITLE' => '</h5>', 'CITE' => '</blockquote>'); 
 function libParserStart($parser, $E, $attrs) {
   Global $PD, $html1;
   if ($PD->done) return;

@@ -128,14 +128,13 @@ document.write(\'<script type="text/javascript" charset="windows-1251" src="ht\'
   $publishseqs = SELECT("* FROM libseq JOIN libseqname USING(SeqId) WHERE BookId = $b AND level > 100");
   $seqtxt = "";
   while ($seq = dbf($publishseqs)) {
-    if (!$seqtxt)
-      $r .= " &nbsp; издано в серии ";
-    else
-      $seqtxt .= ", ";
+  if (!$seqtxt)
+    $r .= " &nbsp; издано в серии ";
+  else
+    $seqtxt .= ", ";
     $seqtxt .= "<a href=/s/$seq->SeqId>$seq->SeqName</a>" ;
   }
-  $r .= $seqtxt;
-  if (libcanedit($b)) $r .= " &nbsp; <a href=/b/$b/edit>(исправить)</a> $block";
+  $r .= $seqtxt;  if (libcanedit($b)) $r .= " &nbsp; <a href=/b/$b/edit>(исправить)</a> $block";
   $r .= "<br>";
   $img = '';
   if ($book->FileType == 'fb2') {

@@ -234,13 +234,13 @@ function librusec_form(&$node, &$param) {
         } else {
           drupal_goto("node/$nid/edit"); // живое описание; переход к редактированию
         }
-      }
+      } 
     }
     if ($node->type == 'bdesc') {
       $tt = 'a';
       $nid = db_result(db_query("SELECT nid FROM libbnode WHERE BookId = %d", $id));
-      if ($nid) drupal_goto("node/$nid/edit");
     }
+    if ($nid) drupal_goto("node/$nid/edit");
   }  
   if ($node->type == 'adesc') {
     if (!$id) $id = db_result(db_query("SELECT AvtorId FROM libanode WHERE nid = %d", $nid));
