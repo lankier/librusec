@@ -110,6 +110,11 @@ function setuid(a){
  jQuery.get('/AJAX.php', {op:'setuid',a:a,l:l}); 
 }
 
+function setseqpubl(s){
+ l = document.getElementById('seqpubl'+s).checked;
+ jQuery.get('/AJAX.php', {op:'setseqpubl',s:s,l:l}); 
+}
+
 function show(id) {
  el = document.getElementById(id).style;
  if( el.position != 'absolute' ) {

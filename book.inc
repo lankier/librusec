@@ -317,7 +317,9 @@ function libBookEdit($b) {
 
     $s = SELECT("* FROM libseq JOIN libseqname USING(SeqId) WHERE BookId = $b");
     while ($ss = dbf($s)) {       
+      $seqpubl = $ss->Level > 100 ? "checked" : "";
       $r .= "<form action=/b/$b/edit/$ss->SeqId><b>Сериал:</b><input size=1 length=2 name=SeqNumb value=$ss->SeqNumb>$ss->SeqName 
+             <input type=checkbox name=publish id=seqpubl$ss->SeqId onClick=setseqpubl($ss->SeqId) $seqpubl>издательский
             (<a href=/b/$b/delseq/$ss->SeqId>удалить</a>)</form>";
       $ssnn++;
     } 
