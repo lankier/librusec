@@ -389,13 +389,17 @@ function libAvtorAddBook($a) {
       $r .= "<hr>".system($packer)."<hr>";
       if ($_POST['filetype'] != 'fb2') $_POST['filetype'] = '';
       unlink ($tname);
-      foreach (glob ("$dir/*") as $f) 
+      foreach (glob ("$dir/*") as $f) {
         $r .= AddFileToLibrusec($f, 'fb2', '');
+        if (file_exists($f)) unlink($f);
+      }
       system ("rmdir '$dir'");  
       return $r."<br><a href=/upload{$online}/fb2>Добавить ещё одну.</a>";
     }  
   }  
-  return AddFileToLibrusec($tname, $ext, $a)."<br><a href=/upload{$online}>Добавить ещё одну.</a>";
+  $r = AddFileToLibrusec($tname, $ext, $a)."<br><a href=/upload{$online}>Добавить ещё одну.</a>";
+  if (file_exists($tname)) unlink($tname);
+  return $r;
 }
 
 function libAvtorForum($a, $a1) {
@@ -564,7 +568,11 @@ function AddFileToLibrusec($f, $ext, $a) {
     Global $PD;
     if ($tt = $PD->head['FICTIONBOOK/DESCRIPTION/TITLE-INFO/BOOK-TITLE'])
       $title = $tt;
-    else {print "В FB2 не найдено название книги. Такой FB2 нам не нужен"; exit;}
+    else {
+      unlink($f);
+      print "В FB2 не найдено название книги. Такой FB2 нам не нужен";
+      exit;
+    }
     $genre = $PD->head['FICTIONBOOK/DESCRIPTION/TITLE-INFO/GENRE'];  
   }
   if (!$genre) $genre = strtolower($_POST['genre']);
