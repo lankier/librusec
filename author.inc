@@ -91,7 +91,7 @@ function libAvtor() {
   } else {
     $c2 = 'checked'; 
     $joinseq = "LEFT JOIN libseq USING(BookId) LEFT JOIN libseqname USING(SeqId)";
-    $order = "S, N, 1, Title";
+    $order = "SeqName, SeqNumb, 1, Title";
   }
 
   if (arg(2) == 'stat') return libAvtorStat($a, $c1, $c2, $c3, $order);
@@ -125,7 +125,7 @@ else $sa = 'on';
   }
   $fields = "libbook.BookId AS BookId, Lang, N, FileType, FileSize, Deleted, Title, Title1";
   if ($c3) $fields .= ', libbook.Time AS Time';
-  if ($joinseq) $seqid = ', SeqId, IF(Level<100, SeqName, NULL) AS S, IF(Level<100, SeqNumb, NULL) as N';
+  if ($joinseq) $seqid = ', SeqId, IF(Level<100, SeqName, NULL) AS SeqName, IF(Level<100, SeqNumb, NULL) as SeqNumb';
   if ($g) {
     $sth = SELECT ("GenreId, $fields $seqid
 FROM libavtor JOIN libgenre USING (BookId) JOIN libbook USING (BookId) $joinseq $joinreaded
