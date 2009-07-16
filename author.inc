@@ -374,6 +374,7 @@ function libAvtorAddBook($a) {
     $filetype = $ext;
   }
   if (!$filetype || !$ext) return "Непонятки с типом файла. Перезалейте.";
+  if ($filetype == 'exe' || $filetype == 'com') return "Запретный тип файла.";
   $tn1 = translitcyr($tname);
   if (!$tn1) return "Непонятки с названием файла. Перезалейте.";
   if ($tn1 !== $tname && !rename ($tname, $tn1)) 
@@ -392,7 +393,7 @@ function libAvtorAddBook($a) {
       foreach (glob ("$dir/*") as $f) {
         $r .= AddFileToLibrusec($f, 'fb2', '');
         if (file_exists($f)) unlink($f);
-      }
+      }  
       system ("rmdir '$dir'");  
       return $r."<br><a href=/upload{$online}/fb2>Добавить ещё одну.</a>";
     }  
@@ -569,8 +570,8 @@ function AddFileToLibrusec($f, $ext, $a) {
     if ($tt = $PD->head['FICTIONBOOK/DESCRIPTION/TITLE-INFO/BOOK-TITLE'])
       $title = $tt;
     else {
+      print "В FB2 не найдено название книги. Такой FB2 нам не нужен"; 
       unlink($f);
-      print "В FB2 не найдено название книги. Такой FB2 нам не нужен";
       exit;
     }
     $genre = $PD->head['FICTIONBOOK/DESCRIPTION/TITLE-INFO/GENRE'];  

@@ -152,14 +152,6 @@ switch ($op) {
    }           
    print "uid = $uid";
  exit;
-
- case 'setseqpubl':
-   if (isset($_GET['s'])) $s = (integer)$_GET['s'];
-   if (!$s || !$u) exit;
-   $level = $_GET['l'] == 'true' ? 111 : 11; // для индикации ручной правки немного увеличиваем level
-   Update ('libseq', "Level = '$level'", "SeqId = $s");
- exit;
-
 }
 
 
